@@ -1,0 +1,49 @@
+let frames = [];
+let v = [];
+let w = [];
+let diameter = [];
+let r = 255;
+let g = 165;
+let b = 0;
+let x = 300;
+let y = 200;
+let totalFrames = 10;
+let folder = "assets/robortIdle/";
+
+let frameIndex = 0;
+let speed = 6;
+
+function preload() {
+  for (let i = 0; i < totalFrames; i++) {
+    frames[i] = loadImage(folder + "frame" + i + ".png");
+  }
+}
+
+function setup() {
+  createCanvas(800, 600);
+
+
+ for (let i = 0; i < 5; i++) {
+    x[i] = random(10, width);
+    y[i] = random(10, height);
+    diameter[i] = random(5, 30);
+  }
+}
+
+function draw() {
+  background(0);
+
+  for (let i = 0; i < x.length; i++) {
+    fill(r, g, b);
+    circle(x[i], y[i], diameter[i]);
+  }
+}
+
+
+
+  image(frames[frameIndex], x, y);
+
+  if (frameCount % speed === 0) {
+    frameIndex = (frameIndex + 1) % frames.length;
+  }
+
